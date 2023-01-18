@@ -89,7 +89,7 @@ WORKDIR $WORK_PATH
 ENTRYPOINT java $MEM_OPTS $JAVA_OPTS -jar -Djava.security.egd=file:/dev/./urandom app.jar
 ```
 
-* 新建Jenkins pipeline项目，粘贴如下脚本，第一次执行Build Now可能会报错，执行第二次Build with Parameters就可以了，会让你选择构建的分支。
+* 新建Jenkins pipeline项目，粘贴如下脚本，第一次执行Build Now可能会报错，执行第二次Build with Parameters就可以了，会让你选择构建的分支。需要事先在k8s集群创建dev命名空间。
 
 ![3.png](./images/3.png)
 
