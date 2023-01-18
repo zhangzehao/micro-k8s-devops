@@ -1,13 +1,13 @@
 * 虚拟机环境配置，只有一个节点，如下：
 
 ```
-操作系统：CentOS Linux 7 (Core) Kernel: Linux 3.10.0-693.el7.x86_64
+操作系统：CentOS Linux 7 (Core) Kernel：Linux 3.10.0-693.el7.x86_64
 docker：Docker version 20.10.8, build 3967b7d
 docker-compose：v2.13.0
 k8s：v1.23.0
 git：1.8.3.1
 maven：3.6.0
-Java version: 1.8.0_201
+Java version：1.8.0_201
 ```
 
 * Jenkins安装插件： Git Parameter ， Config File Provider Plugin 
@@ -16,13 +16,13 @@ Java version: 1.8.0_201
 
 * Jenkins需要配置的凭据，唯一标识：harbor-credentials ， gitlab_http_credentials。要和下面流水线脚本的id保持一致
 
-![1.png](./images/1.png)
+![1.png](https://gitee.com/zhangzehao37/micro-k8s-devops/raw/master/images/1.png)
 
 * 在Jenkins Config File插件配置k8s deployment文件模板： k8s-deployment.tpl
 
-![2.png](./images/2.png)
+![2.png](https://gitee.com/zhangzehao37/micro-k8s-devops/raw/master/images/2.png)
 
-k8s-deployment.tpl 文件如下：
+* k8s-deployment.tpl 文件如下：
 
 ```
 apiVersion: apps/v1
@@ -50,7 +50,7 @@ spec:
 
 * 在需要部署的java子模块中，添加一份Dockerfile文件，一般和pom.xml文件同一层目录。目前只有open-jdk而没有oracle jdk的公共镜像，并且open-jdk又不算是标准，所以需要自己下载oracle jdk打包成镜像并且推送到私有harbor仓库，然后在Dockerfile引用。
 
-Dockerfile文件如下：
+* Dockerfile文件如下：
 
 ```
 # Version 1.0.0
@@ -91,9 +91,9 @@ ENTRYPOINT java $MEM_OPTS $JAVA_OPTS -jar -Djava.security.egd=file:/dev/./urando
 
 * 新建Jenkins pipeline项目，粘贴如下脚本，第一次执行Build Now可能会报错，执行第二次Build with Parameters就可以了，会让你选择构建的分支。需要事先在k8s集群创建dev命名空间。
 
-![3.png](./images/3.png)
+![3.png](https://gitee.com/zhangzehao37/micro-k8s-devops/raw/master/images/3.png)
 
-Jenkins流水线脚本如下：
+* Jenkins流水线脚本如下：
 
 ```
 pipeline{
